@@ -16,12 +16,23 @@
 
     <div id="root">
 
-        <div class="container text-center mb-5 mt-2 border border-primary p-3">
-            <input type="text" placeholder="New Task" v-model="taskInputName">
+        <div class="container text-center my-5 border border-primary p-3">
+            <input @keyup.enter="addNewTask" type="text" placeholder="New Task" v-model="taskInputName" class="w-50 mx-5">
             <button @click="addNewTask" class="btn btn-outline-primary">Add Task</button>
         </div>
 
         <div class="w-75 container border border-primary p-3">
+
+            <h4 class="my-4">
+                You have 
+                <span> {{todoList.length}} </span>
+                things to do today.
+                
+                <span v-if="todoList.length > 0 && todoList.length < 4"  class="text-success my-3 d-block">It seems an easy day, man!</span>
+                <span v-if="todoList.length > 3 && todoList.length < 8 " class="text-warning my-3 d-block">Start doing things and save some free time!</span>
+                <span v-if="todoList.length > 7 " class="text-danger my-3 d-block">I someone busy today? Smash this list, bro!</span>
+            </h4>
+
             <ul v-if="todoList.length > 0" class="list-group list-group-flush">
                 <li  class="list-group-item d-flex justify-content-between" v-for="(element, index) in todoList" :key="index">
 
@@ -32,13 +43,15 @@
                 </li>
             </ul>
 
-            <h4 v-else>GG, you're free!</h4>
+            <h4 v-else>GG, you're free! <i class="bi bi-cup-hot-fill"></i></h4>
 
         </div>
 
-        <div class="w-75 container border border-primary p-3 mt-5">
+        <div class="w-75 container border border-primary p-3 my-5">
 
-            <h4>Todo completed:</h4>
+            <h5 v-if="todoCompleted.length > 0" class="mt-5">You have completed <span> {{todoCompleted.length}} </span>task today! Keep on smashing, bro!</h5>
+
+            <h6>Todo completed:</h6>
 
             <ul v-if="todoCompleted.length > 0" class="list-group list-group-flush">
                 <li v-for="(element, index) in todoCompleted" :key="index" class="list-group-item d-flex justify-content-between">
@@ -50,9 +63,9 @@
                 </li>
             </ul>
 
-            <h5 v-if="todoCompleted.length > 0" class="mt-5">You have completed <span> {{todoCompleted.length}} </span>task today! Keep on smashing, bro!</h5>
+            
 
-            <h3 v-else class="mt-4">You have 0 task completed today.</h3>
+            <h3 v-else class="mt-4">You have 0 task completed today</h3>
 
         </div>
         

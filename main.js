@@ -4,17 +4,13 @@ var app = new Vue (
         data: {
             todoList: [
                 {
-                    testo: 'comprare il pane',
+                    testo: "I'm a task, complete or delete me",
                     done: false
                 },
                 {
-                    testo:'comprare latte',
+                    testo: "I'm another task, complete or delete me",
                     done: false
                 },
-                {
-                    testo:'allenamento',
-                    done: false
-                }
             ],
 
             todoCompleted: [],
@@ -43,9 +39,8 @@ var app = new Vue (
                     done: false
                 }
                 this.todoList.push(newTask)
+                this.taskInputName = ''
             }
-
-
         },
     }
 )
