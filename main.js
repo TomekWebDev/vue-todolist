@@ -16,7 +16,10 @@ var app = new Vue (
                     done: false
                 }
             ],
-            todoCompleted: []
+
+            todoCompleted: [],
+
+            taskInputName:'',
         },
         methods: {
             removeTodoListElement(index){
@@ -33,8 +36,14 @@ var app = new Vue (
             },
             removeTodoCompletedElement(index){
                 this.todoCompleted.splice(index,1)
+            },
+            addNewTask(){
+                newTask = {
+                    testo: this.taskInputName,
+                    done: false
+                }
+                this.todoList.push(newTask)
             }
-            
 
 
         },
